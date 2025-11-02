@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NoteVault — Daftar & Catatan Aman</title>
+<style>
+  * { box-sizing: border-box; font-family: Inter, system-ui, sans-serif; }
+  body {
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh; margin: 0; color: #222;
+  }
+  .container {
+    background: #fff; padding: 2rem; border-radius: 16px;
+    max-width: 600px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  input, textarea { width: 100%; padding: 0.75rem; margin-top: 0.5rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
+  button { background:#0078ff;color:#fff;border:none;padding:0.7rem 1.4rem;border-radius:8px;cursor:pointer;margin-top:0.8rem;transition:0.2s; }
+  button:hover { background:#005fcc; }
+  .hidden { display:none; }
+  .link-container { margin-top:1rem; }
+  #link-unlocked a { color:#0078ff; text-decoration:underline; font-weight:bold; }
+  footer { position:fixed; bottom:10px; color:#fff; font-size:0.9rem; left:0; right:0; text-align:center; }
+  .tab { margin: 0.5rem; cursor:pointer; display:inline-block; padding:0.3rem 0.6rem; border-radius:6px; background:#eee; }
+  .tab.active { background:#0078ff;color:#fff; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- LOGIN / DAFTAR PAGE -->
+  <div id="auth-page">
+    <h1>🔐 NoteVault</h1>
+    <div>
+      <span class="tab active" id="login-tab">Masuk</span>
+      <span class="tab" id="register-tab">Daftar</span>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-form">
+      <input id="login-email" type="email" placeholder="Email">
+      <input id="login-password" type="password" placeholder="Password">
+      <button id="login-btn">Masuk</button>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="register-form" class="hidden">
+      <input id="reg-email" type="email" placeholder="Email Baru">
+      <input id="reg-password" type="password" placeholder="Password Baru">
+      <button id="register-btn">Daftar</button>
+    </div>
+  </div>
+
+  <!-- NOTE PAGE -->
+  <div id="note-page" class="hidden">
+    <h1>📝 NoteVault</h1>
+    <p>Halo, <span id="user-name"></span></p>
+
+    <div id="new-note">
+      <textarea id="note-input" placeholder="Tulis catatanmu di sini..."></textarea>
+      <button id="save-btn">Simpan Catatan</button>
+    </div>
+
+    <div id="saved-note" class="hidden">
+      <h3>Catatan Tersimpan</h3>
+      <p id="note-display"></p>
+
+      <div class="link-container">
+        <input id="share-link" readonly>
+        <div id="locked-link">
+          <p>🔒 Tautan terkunci. Klik tombol di bawah untuk membuka.</p>
+          <button id="unlock-btn">Unlock Link</button>
+        </div>
+        <div id="link-unlocked" class="hidden">
+          <p>🔓 Tautan terbuka:</p>
+          <a id="unlocked-anchor" href="#" target="_blank">Buka Catatan Ini</a>
+        </div>
+      </div>
+    </div>
+
+    <button id="logout-btn" style="background:#f44;">Keluar</button>
+  </div>
+
+</div>
+<footer>© 2025 NoteVault. Dibuat oleh ChatGPT.</footer>
+
+<script>
+  // Ambil elemen
+  const loginTab = document.getElementById("login-tab");
+  const registerTab = document.getElementById("register-tab");
+  const loginForm = document.getElementById("login-form");
+  const registerForm = document.getElementById("register-form");
+  const loginBtn = document.getElementById("login-bt
+  
